@@ -23,7 +23,7 @@ const Counter = () => {
             {a} <br />
             <Button className='m-2 cursor-pointer' onClick={increment}>Increment</Button>
             <Button className='cursor-pointer' onClick={decrement}>Decrement</Button>
-            <Button className='cursor-pointer m-2'>Reset</Button>
+            <Button className='cursor-pointer m-2' onClick={reset}>Reset</Button>
         </div>
     )
 }
