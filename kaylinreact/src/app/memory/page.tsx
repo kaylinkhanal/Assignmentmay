@@ -11,26 +11,41 @@ const Memory = () => {
         [3,3,0,5]
     ])
     const handleClick = (idArr)=> {
+        if(displayedIndex.length == 2) return;
         setDisplayedIndex([...displayedIndex, idArr])
     }
+
+
+
     useEffect(()=>{
-        if(displayedIndex.length == 2){
+   
+    if(displayedIndex.length == 2){
+        if(memory[displayedIndex[0][0]][displayedIndex[0][1]] ==
+            memory[displayedIndex[1][0]][displayedIndex[1][1]]){
+                const newMemory = [...memory]
+                newMemory[displayedIndex[0][0]][displayedIndex[0][1]] = 'tick'
+                  newMemory[displayedIndex[1][0]][displayedIndex[1][1]] = 'tick'
+                setMemory(newMemory)
+            }
+
             setTimeout(() => {
                 setDisplayedIndex([])
-            }, 3000);
-        }
-    },[displayedIndex.length])
+            }, 5000);
+    }
+    }, [displayedIndex.length])
   return (
     <div>
-        {JSON.stringify(displayedIndex)}
+   
+
         {memory.map((item, id)=>{
         return (
             <div key={id} className='flex gap-2'>
                 {item.map((val, idx)=>{
-                  
+                      const showItem = displayedIndex.some(([r,c])=> r==id && c ==idx)
                     return (
                         <div key={idx} className='flex items-center justify-center w-12 h-12 border ' onClick={()=>handleClick([id , idx])}>
-                            {displayedIndex[id]?.[0]== id && displayedIndex[id]?.[1]== idx ? val : ''}
+                            {showItem  ? val : ''}
+                            {val == 'tick' ? '✅' :''}
                             </div>
                     )
                 })}
