@@ -1,4 +1,4 @@
-// lib/store.js
+// app/store/index.js
 import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from './features/counter/counterSlice'; // Example slice
 
