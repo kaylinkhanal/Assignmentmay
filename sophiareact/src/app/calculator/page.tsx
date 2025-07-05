@@ -40,8 +40,15 @@ const Calculator = () => {
       case "=":
         // if(output.includes('%'))
         //   setOutput(output/10)
-        const result = eval(output);
+        if(output.includes('%')){
+          const value = output.slice(0,-1)
+          console.log(value)
+          // setOutput(String(value/100))
+        }
+        else{
+          const result = eval(output);
         setOutput(String(result));
+        }
         break;
 
       case "AC":
@@ -124,11 +131,12 @@ const Calculator = () => {
 
       default:
         if (/^[1-9]$/.test(val)) {
-          if (output === "0") setOutput(val);
+          if (output === "0") setOutput(val)
           else if (lastChar === "0" && onlyOperator.includes(secondLastChar)) {
             setOutput(output.slice(0, -1) + val);
           } else setOutput(output + val);
-        } else setOutput(output + val);
+        } 
+        else setOutput(output + val);
 
         break;
     }
